@@ -1,0 +1,22 @@
+﻿<Window x:Class="FoodChooser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodChooser"
+        mc:Ignorable="d"
+        Title="Food Chooser" Height="450" Width="800">
+    <Grid Background="#7c7c7c">
+        <Menu HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50">
+            <MenuItem Header="File" HorizontalAlignment="Left" Height="20" Width="50">
+                <MenuItem Header="Options" HorizontalAlignment="Left" Height="20" Width="140"/>
+                <MenuItem Header="Quit" HorizontalAlignment="Left" Height="20" Width="140">
+
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <Button Content="Meal Selector" HorizontalAlignment="Left" Margin="82,125,0,0" VerticalAlignment="Top" Width="283" Height="138"/>
+        <Button Content="Meal Planner" HorizontalAlignment="Left" Margin="434,125,0,0" VerticalAlignment="Top" Width="283" Height="138"/>
+        <Menu HorizontalAlignment="Left" Height="20" Margin="50,0,0,0" VerticalAlignment="Top" Width="742"/>
+    </Grid>
+</Window>
