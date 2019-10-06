@@ -25,6 +25,13 @@ namespace FoodChooser
             InitializeComponent();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Open Meal Selector on click
+            MealSelectorMain mealSelectorMain = new MealSelectorMain();
+            this.NavigationService.Navigate(mealSelectorMain);
+
         }
+    }
     }
 

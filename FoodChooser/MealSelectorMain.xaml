@@ -1,0 +1,43 @@
+﻿<Page x:Class="FoodChooser.MealSelectorMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        
+        Title="Food Chooser - Meal Selector" Height="450" Width="800">
+    <Grid Background="#7c7c7c">
+        <Menu HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50">
+            <MenuItem Header="File" HorizontalAlignment="Left" Height="20" Width="50" Click="MenuItem_Click">
+                <MenuItem Header="Home" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Click_1"/>
+                <Separator HorizontalAlignment="Left" Height="2" Width="150"/>
+                <MenuItem Header="Options" HorizontalAlignment="Left" Height="20" Width="140"/>
+                <MenuItem Header="Quit" HorizontalAlignment="Left" Height="20" Width="140">
+                </MenuItem>
+                
+            </MenuItem>
+        </Menu>
+        <Menu HorizontalAlignment="Left" Height="20" Margin="50,0,0,0" VerticalAlignment="Top" Width="750"/>
+        <TextBlock HorizontalAlignment="Left" Margin="50,54,0,0" TextWrapping="Wrap" Text="Choose your options:" VerticalAlignment="Top" Height="45" Width="527" FontSize="22"/>
+        <CheckBox Content="Fast Food" HorizontalAlignment="Left" Margin="50,123,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked"/>
+        <CheckBox Content="Sit Down Restaurant" HorizontalAlignment="Left" Margin="50,163,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Coffee Shop" HorizontalAlignment="Left" Margin="50,143,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="50,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127" FontSize="14"><Run Text="Building Type"/><Run Text="s"/><Run Text=":"/></TextBlock>
+        <TextBlock Margin="246,99,454,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"><Run Text="Food Types"/><Run Text=":"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="405,99,0,0" TextWrapping="Wrap" Text="Cost:" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="1.577,0.644"/>
+        <CheckBox Content="Burgers" HorizontalAlignment="Left" Margin="246,123,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_1"/>
+        <CheckBox Content="Chicken" HorizontalAlignment="Left" Margin="246,143,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Asian" HorizontalAlignment="Left" Margin="246,163,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Subs/Sandwiches" HorizontalAlignment="Left" Margin="246,183,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Coffee" HorizontalAlignment="Left" Margin="246,203,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="Mexican" HorizontalAlignment="Left" Margin="246,223,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="$" HorizontalAlignment="Left" Margin="405,123,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="$$" HorizontalAlignment="Left" Margin="405,143,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="$$$" HorizontalAlignment="Left" Margin="405,163,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="336,286,0,0" TextWrapping="Wrap" Text="Result:" VerticalAlignment="Top" FontSize="20"/>
+        
+        <TextBlock x:Name="DisplayedResult" Margin="119,318,185,85" TextWrapping="Wrap" TextAlignment="Center" Height="47" Width="496" FontSize="36"><Run Text="{Binding textdata}"/><Run/></TextBlock>
+
+    </Grid>
+</Page>
+

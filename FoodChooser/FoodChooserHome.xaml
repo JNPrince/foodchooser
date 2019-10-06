@@ -15,8 +15,8 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Button Content="Meal Selector" HorizontalAlignment="Left" Margin="82,125,0,0" VerticalAlignment="Top" Width="283" Height="138"/>
+        <Button Content="Meal Selector" HorizontalAlignment="Left" Margin="82,125,0,0" VerticalAlignment="Top" Width="283" Height="138" Click="Button_Click"/>
         <Button Content="Meal Planner" HorizontalAlignment="Left" Margin="434,125,0,0" VerticalAlignment="Top" Width="283" Height="138"/>
-        <Menu HorizontalAlignment="Left" Height="20" Margin="50,0,0,0" VerticalAlignment="Top" Width="742"/>
+        <Menu HorizontalAlignment="Left" Height="20" Margin="50,0,0,0" VerticalAlignment="Top" Width="750"/>
     </Grid>
 </Page>
