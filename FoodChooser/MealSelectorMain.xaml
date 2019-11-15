@@ -7,6 +7,10 @@
         
         Title="Food Chooser - Meal Selector" Height="450" Width="800">
     <Grid Background="#7c7c7c">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="303*"/>
+            <ColumnDefinition Width="497*"/>
+        </Grid.ColumnDefinitions>
         <Menu HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50">
             <MenuItem Header="File" HorizontalAlignment="Left" Height="20" Width="50" Click="MenuItem_Click">
                 <MenuItem Header="Home" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Click_1"/>
@@ -14,30 +18,29 @@
                 <MenuItem Header="Options" HorizontalAlignment="Left" Height="20" Width="140"/>
                 <MenuItem Header="Quit" HorizontalAlignment="Left" Height="20" Width="140">
                 </MenuItem>
-                
+
             </MenuItem>
         </Menu>
-        <Menu HorizontalAlignment="Left" Height="20" Margin="50,0,0,0" VerticalAlignment="Top" Width="750"/>
-        <TextBlock HorizontalAlignment="Left" Margin="50,54,0,0" TextWrapping="Wrap" Text="Choose your options:" VerticalAlignment="Top" Height="45" Width="527" FontSize="22"/>
-        <CheckBox Content="Fast Food" HorizontalAlignment="Left" Margin="50,123,0,0" VerticalAlignment="Top" Checked="FastFoodCheckBox_Checked" Unchecked="FastFoodCheckBox_Unchecked"/>
-        <CheckBox Content="Sit Down Restaurant" HorizontalAlignment="Left" Margin="50,163,0,0" VerticalAlignment="Top" Checked="SitDownRestaurant_Checked" Unchecked="SitDownRestaurant_Unchecked"/>
-        <CheckBox Content="Coffee Shop" HorizontalAlignment="Left" Margin="50,143,0,0" VerticalAlignment="Top" Checked="CoffeeShop_Checked" Unchecked="CoffeeShop_Unchecked"/>
+        <Menu HorizontalAlignment="Left" Height="20" Margin="50,0,0,0" VerticalAlignment="Top" Width="750" Grid.ColumnSpan="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="50,54,0,0" TextWrapping="Wrap" Text="Choose your options:" VerticalAlignment="Top" Height="45" Width="401" FontSize="22" Grid.ColumnSpan="2"/>
+        <CheckBox Content="Fast Food" Name="FastFoodCheckbox" HorizontalAlignment="Left" Margin="50,143,0,0" VerticalAlignment="Top" Checked="FastFoodCheckBox_Checked" Unchecked="FastFoodCheckBox_Unchecked"/>
+        <CheckBox Content="Sit Down Restaurant" Name="SitDownRestaurantCheckbox" HorizontalAlignment="Left" Margin="50,163,0,0" VerticalAlignment="Top" Checked="SitDownRestaurant_Checked" Unchecked="SitDownRestaurant_Unchecked"/>
+        <CheckBox Content="Coffee Shop" Name="CoffeeShopCheckbox" HorizontalAlignment="Left" Margin="50,124,0,0" VerticalAlignment="Top" Checked="CoffeeShop_Checked" Unchecked="CoffeeShop_Unchecked"/>
         <TextBlock HorizontalAlignment="Left" Margin="50,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127" FontSize="14"><Run Text="Building Type"/><Run Text="s"/><Run Text=":"/></TextBlock>
-        <TextBlock Margin="246,99,454,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"><Run Text="Food Types"/><Run Text=":"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="405,99,0,0" TextWrapping="Wrap" Text="Cost:" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="1.577,0.644"/>
-        <CheckBox Content="Burgers" HorizontalAlignment="Left" Margin="246,123,0,0" VerticalAlignment="Top" Checked="Burgers_Checked" Unchecked="Burgers_Unchecked"/>
-        <CheckBox Content="Chicken" HorizontalAlignment="Left" Margin="246,143,0,0" VerticalAlignment="Top" Checked="Chicken_Checked" Unchecked="Chicken_Unchecked"/>
-        <CheckBox Content="Asian" HorizontalAlignment="Left" Margin="246,163,0,0" VerticalAlignment="Top" Checked="Asian_Checked" Unchecked="Asian_Unchecked"/>
-        <CheckBox Content="Subs/Sandwiches" HorizontalAlignment="Left" Margin="246,183,0,0" VerticalAlignment="Top" Checked="Subs_Checked" Unchecked="Subs_Unchecked"/>
-        <CheckBox Content="Coffee" HorizontalAlignment="Left" Margin="246,203,0,0" VerticalAlignment="Top" Checked="Coffee_Checked" Unchecked="Coffee_Unchecked"/>
-        <CheckBox Content="Mexican" HorizontalAlignment="Left" Margin="246,223,0,0" VerticalAlignment="Top" Checked="Mexican_Checked" Unchecked="Mexican_Unchecked"/>
-        <CheckBox Content="$" HorizontalAlignment="Left" Margin="405,123,0,0" VerticalAlignment="Top" Checked="Dollar_Checked" Unchecked="Dollar_Unchecked"/>
-        <CheckBox Content="$$" HorizontalAlignment="Left" Margin="405,143,0,0" VerticalAlignment="Top" Checked="DollarDollar_Checked" Unchecked="DollarDollar_Unchecked"/>
-        <CheckBox Content="$$$" HorizontalAlignment="Left" Margin="405,163,0,0" VerticalAlignment="Top" Checked="DollarDollarDollar_Checked" Unchecked="DollarDollarDollar_Unchecked"/>
-        <TextBlock HorizontalAlignment="Left" Margin="336,286,0,0" TextWrapping="Wrap" Text="Result:" VerticalAlignment="Top" FontSize="20"/>
-        
-        <TextBlock x:Name="DisplayedResult" Margin="119,318,185,85" TextWrapping="Wrap" TextAlignment="Center" Height="47" Width="496" FontSize="36"><Run Text="{Binding textdata}"/><Run/></TextBlock>
-        <Button Content="CHOOSE" HorizontalAlignment="Left" Margin="311,261,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Choose_Button_Click"/>
+        <TextBlock Margin="246,99,454,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2"><Run Text="Food Types"/><Run Text=":"/></TextBlock>
+        <CheckBox Content="Burgers" Name="BurgersCheckbox" HorizontalAlignment="Left" Margin="246,203,0,0" VerticalAlignment="Top" Checked="Burgers_Checked" Unchecked="Burgers_Unchecked" Grid.ColumnSpan="2"/>
+        <CheckBox Content="Chicken" Name="ChickenCheckbox" HorizontalAlignment="Left" Margin="246,143,0,0" VerticalAlignment="Top" Checked="Chicken_Checked" Unchecked="Chicken_Unchecked" Grid.ColumnSpan="2"/>
+        <CheckBox Content="Asian" Name="AsianCheckbox" HorizontalAlignment="Left" Margin="246,163,0,0" VerticalAlignment="Top" Checked="Asian_Checked" Unchecked="Asian_Unchecked"/>
+        <CheckBox Content="Subs/Sandwiches" Name="SubsCheckbox" HorizontalAlignment="Left" Margin="246,183,0,0" VerticalAlignment="Top" Checked="Subs_Checked" Unchecked="Subs_Unchecked" Grid.ColumnSpan="2"/>
+        <CheckBox Content="Coffee" Name="CoffeeCheckbox" HorizontalAlignment="Left" Margin="246,123,0,0" VerticalAlignment="Top" Checked="Coffee_Checked" Unchecked="Coffee_Unchecked"/>
+        <CheckBox Content="Mexican" Name="MexicanCheckbox" HorizontalAlignment="Left" Margin="246,223,0,0" VerticalAlignment="Top" Checked="Mexican_Checked" Unchecked="Mexican_Unchecked" Grid.ColumnSpan="2"/>
+
+        <TextBlock x:Name="DisplayedResult" Margin="179,104,24,194" TextWrapping="Wrap" TextAlignment="Center" FontSize="28" Grid.Column="1" ><Run FontStyle="Italic" Text="{Binding textdata}"/><Run/><LineBreak/></TextBlock>
+        <Button Content="Run" HorizontalAlignment="Left" Margin="50,266,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Choose_Button_Click"/>
+        <Button Content="Select All" HorizontalAlignment="Left" Margin="246,266,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Select_All_Click" Grid.ColumnSpan="2"/>
+        <Button Content="Clear All" HorizontalAlignment="Left" Margin="48,266,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Clear_All_Click" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="295,54,0,0" TextWrapping="Wrap" Text="Result:" FontSize="22" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button Content="View/Edit Database" HorizontalAlignment="Left" Margin="246,291,0,0" VerticalAlignment="Top" Width="205" Height="20" Click="View_Database_Click" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Page>

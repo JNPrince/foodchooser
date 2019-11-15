@@ -22,6 +22,8 @@ namespace FoodChooser
         public string textdata { get; set; }
     }
 
+
+    
     /// <summary>
     /// Interaction logic for MealSelectorMain.xaml
     /// </summary>
@@ -29,20 +31,16 @@ namespace FoodChooser
     {
 
         MealSelector mealselector = new MealSelector();
-
+        
         public MealSelectorMain()
         {
             InitializeComponent();
 
-            
-
-            //HOW TO MAKE THE TEXT BOX DO THE TEXT
-
-            // DisplayedResult.DataContext = new TextboxText() {textdata = "This is the result" };
-            // string newtext = "THE RULES HAVE CHANGED";
-            // DisplayedResult.DataContext = new TextboxText() { textdata = newtext };
+            DisplayedResult.DataContext = new TextboxText() { textdata = "Make your selections" };
+         
 
         }
+                     
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -54,132 +52,141 @@ namespace FoodChooser
             this.NavigationService.Navigate(foodChooserHome);
         }
 
-        private void FastFoodCheckBox_Checked (object sender, RoutedEventArgs e)
+
+
+        //Building type selection checkboxes
+
+        private void FastFoodCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Add("Fast Food");
+            mealselector.buildingTypeSelections.Add("Fast Food");
         }
 
         private void FastFoodCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Remove("Fast Food");
+            mealselector.buildingTypeSelections.Remove("Fast Food");
         }
 
         private void CoffeeShop_Checked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Add("Coffee Shop");
+            mealselector.buildingTypeSelections.Add("Coffee Shop");
         }
 
         private void CoffeeShop_Unchecked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Remove("Coffee Shop");
+            mealselector.buildingTypeSelections.Remove("Coffee Shop");
         }
 
         private void SitDownRestaurant_Checked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Add("Sit Down Restaurant");
+            mealselector.buildingTypeSelections.Add("Sit Down Restaurant");
         }
 
         private void SitDownRestaurant_Unchecked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Remove("Sit Down Restaurant");
+            mealselector.buildingTypeSelections.Remove("Sit Down Restaurant");
         }
 
+        //Food type selection checkboxes
         private void Burgers_Checked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Add("Burgers");
+            mealselector.foodTypeSelections.Add("Burgers");
         }
 
         private void Burgers_Unchecked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Remove("Burgers");
+            mealselector.foodTypeSelections.Remove("Burgers");
         }
 
         private void Chicken_Checked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Add("Chicken");
+            mealselector.foodTypeSelections.Add("Chicken");
         }
 
         private void Chicken_Unchecked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Remove("Chicken");
+            mealselector.foodTypeSelections.Remove("Chicken");
         }
 
         private void Asian_Checked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Add("Asian");
+            mealselector.foodTypeSelections.Add("Asian");
         }
 
         private void Asian_Unchecked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Remove("Asian");
+            mealselector.foodTypeSelections.Remove("Asian");
         }
 
         private void Subs_Checked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Add("Subs");
+            mealselector.foodTypeSelections.Add("Subs");
         }
         private void Subs_Unchecked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Remove("Subs");
+            mealselector.foodTypeSelections.Remove("Subs");
         }
 
         private void Coffee_Checked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Add("Coffee");
+            mealselector.foodTypeSelections.Add("Coffee");
         }
 
         private void Coffee_Unchecked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Remove("Coffee");
+            mealselector.foodTypeSelections.Remove("Coffee");
         }
 
         private void Mexican_Checked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Add("Mexican");
+            mealselector.foodTypeSelections.Add("Mexican");
         }
 
         private void Mexican_Unchecked(object sender, RoutedEventArgs e)
         {
-            mealselector.selections.Remove("Mexican");
+            mealselector.foodTypeSelections.Remove("Mexican");
         }
 
-        private void Dollar_Checked(object sender, RoutedEventArgs e)
-        {
-            mealselector.selections.Add("$");
-        }
-        private void Dollar_Unchecked(object sender, RoutedEventArgs e)
-        {
-            mealselector.selections.Remove("$");
-        }
-
-        private void DollarDollar_Checked(object sender, RoutedEventArgs e)
-        {
-            mealselector.selections.Add("$$");
-        }
-
-        private void DollarDollar_Unchecked(object sender, RoutedEventArgs e)
-        {
-            mealselector.selections.Remove("$$");
-        }
-
-        private void DollarDollarDollar_Checked(object sender, RoutedEventArgs e)
-        {
-            mealselector.selections.Add("$$$");
-        }
-        private void DollarDollarDollar_Unchecked(object sender, RoutedEventArgs e)
-        {
-            mealselector.selections.Remove("$$$");
-        }
-
-
+        //Bottom buttons
                
         private void Choose_Button_Click(object sender, RoutedEventArgs e)
         {
-            string resulttext = string.Join(", ", mealselector.selections );
+            mealselector.GetResult();
+            string resulttext = mealselector.results;
             DisplayedResult.DataContext = new TextboxText() { textdata = resulttext };
         }
 
+        private void Select_All_Click(object sender, RoutedEventArgs e)
+        {
+            CoffeeShopCheckbox.IsChecked = true;
+            FastFoodCheckbox.IsChecked = true;
+            SitDownRestaurantCheckbox.IsChecked = true;
+            CoffeeCheckbox.IsChecked = true;
+            ChickenCheckbox.IsChecked = true;
+            AsianCheckbox.IsChecked = true;
+            SubsCheckbox.IsChecked = true;
+            BurgersCheckbox.IsChecked = true;
+            MexicanCheckbox.IsChecked = true;        
 
+        }
+
+        private void Clear_All_Click(object sender, RoutedEventArgs e)
+        {
+            CoffeeShopCheckbox.IsChecked = false;
+            FastFoodCheckbox.IsChecked = false;
+            SitDownRestaurantCheckbox.IsChecked = false;
+            CoffeeCheckbox.IsChecked = false;
+            ChickenCheckbox.IsChecked = false;
+            AsianCheckbox.IsChecked = false;
+            SubsCheckbox.IsChecked = false;
+            BurgersCheckbox.IsChecked = false;
+            MexicanCheckbox.IsChecked = false;
+        }
+
+        private void View_Database_Click(object sender, RoutedEventArgs e)
+        {
+            MealSelectorDatabaseViewer datbaseWindow = new MealSelectorDatabaseViewer();
+            datbaseWindow.Show();
+        }
     }
 
 
