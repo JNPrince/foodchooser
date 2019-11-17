@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,7 +66,7 @@ namespace FoodChooser
                 {
                     foreach (string foodtype in foodTypeSelections)
                     {
-                        string sqlCommandString = $"SELECT Name FROM MealSelector WHERE [Building Type] = '{building}' AND [Food Type] = '{foodtype}'";
+                        string sqlCommandString = $"SELECT Name FROM MealSelector WHERE Building = '{building}' AND Food = '{foodtype}'";
                         SQLiteCommand command = new SQLiteCommand(sqlCommandString, maindatabase);
                         SQLiteDataReader reader = command.ExecuteReader();
                         while (reader.Read())
@@ -92,27 +93,38 @@ namespace FoodChooser
 
     class MealSelectorDatabaseTools
     {
-
-        private DataTable _databaseItems = new DataTable();
-
-        public DataTable databaseItems
+        public MealSelectorDatabaseTools()
         {
-            get { return _databaseItems; }
-            
+            loadDatabase();
         }
 
-        public MealSelectorDatabaseTools()
+        public DataTable databaseItems = new DataTable();
+
+        public void loadDatabase()
+        {
+            databaseItems.Clear();
+            SQLiteConnection maindatabase = new SQLiteConnection("DataSource=maindatabase.db; Version=3;");
+            maindatabase.Open();
+            string sqlCommandString = "SELECT * FROM MealSelector ORDER BY Name ASC";
+            SQLiteCommand command = new SQLiteCommand(sqlCommandString, maindatabase);
+            SQLiteDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult);
+            databaseItems.Load(reader);
+        }
+
+        public void saveDatabase()
         {
             SQLiteConnection maindatabase = new SQLiteConnection("DataSource=maindatabase.db; Version=3;");
             maindatabase.Open();
-            string sqlCommandString = $"SELECT * FROM MealSelector ORDER BY Name DESC";
-            SQLiteCommand command = new SQLiteCommand(sqlCommandString, maindatabase);
-            SQLiteDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult);
-            _databaseItems.Load(reader);
-            
+            SQLiteCommand sqlCommand = maindatabase.CreateCommand();
+            sqlCommand.CommandText = $"SELECT Name, Building, Food from {databaseItems}";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(sqlCommand);
+            SQLiteCommandBuilder builder = new SQLiteCommandBuilder(adapter);
+            adapter.Update(databaseItems);
+            maindatabase.Close();
         }
-
     }
+
+
 
 
 

@@ -14,25 +14,22 @@
         </Grid.ColumnDefinitions>
 
 
-        <DataGrid Name="MealSelectorDatabaseGrid" Background="White" FontSize="14" ColumnWidth="*" GridLinesVisibility="None" HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding}" Margin="288,28,0,51">
-        <DataGrid.Columns>
-            <DataGridTextColumn Width="Auto" />
-
-        </DataGrid.Columns>
+        <DataGrid x:Name="MealSelectorDatabaseGrid" Background="White" FontSize="14" ColumnWidth="*" GridLinesVisibility="None" HorizontalScrollBarVisibility="Hidden" SelectionUnit="FullRow" IsReadOnly="True" ItemsSource="{Binding}" Margin="288,28,0,51">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="Auto" CanUserReorder="False" />
+            </DataGrid.Columns>
         </DataGrid>
 
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="51,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="155"/>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="51,216,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Reset Form" HorizontalAlignment="Left" Margin="131,216,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="NameTextbox" Text="{Binding SelectedItem.Name, ElementName=MealSelectorDatabaseGrid}"  HorizontalAlignment="Left" Height="23" Margin="51,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
         <TextBlock HorizontalAlignment="Left" FontSize="20" Margin="51,24,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" Height="25" Width="136"/>
         <TextBlock HorizontalAlignment="Left" FontSize="20" Margin="51,82,0,0" TextWrapping="Wrap" Text="Building Type:" VerticalAlignment="Top" Height="29" Width="136"/>
         <TextBlock HorizontalAlignment="Left" FontSize="20" Margin="51,138,0,0" TextWrapping="Wrap" Text="Food Type:" VerticalAlignment="Top" Height="25" Width="136"/>
-        <ComboBox HorizontalAlignment="Left" Margin="51,111,0,0" VerticalAlignment="Top" Width="155">
+        <ComboBox Text="{Binding SelectedItem.Building, ElementName=MealSelectorDatabaseGrid}" HorizontalAlignment="Left" Margin="51,111,0,0" VerticalAlignment="Top" Width="155">
             <ComboBoxItem Content="Fast Food"/>
             <ComboBoxItem Content="Sit Down Restaurant"/>
             <ComboBoxItem Content="Coffee Shop"/>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" Margin="51,168,0,0" VerticalAlignment="Top" Width="155">
+        <ComboBox Text="{Binding SelectedItem.Food, ElementName=MealSelectorDatabaseGrid}" HorizontalAlignment="Left" Margin="51,168,0,0" VerticalAlignment="Top" Width="155">
             <ComboBoxItem Content="Asian"/>
             <ComboBoxItem Content="Burgers"/>
             <ComboBoxItem Content="Chicken"/>
@@ -40,12 +37,12 @@
             <ComboBoxItem Content="Mexican"/>
             <ComboBoxItem Content="Subs"/>
         </ComboBox>
-        <Button Content="Reload" HorizontalAlignment="Left" Margin="287,379,0,0" VerticalAlignment="Top" Width="117" Height="21"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="621,379,0,0" VerticalAlignment="Top" Width="117" Height="21"/>
-        <Button Content="Edit" HorizontalAlignment="Left" Margin="499,379,0,0" VerticalAlignment="Top" Width="117" Height="21"/>
-        <Button Content="Save Changes" Background="ForestGreen" HorizontalAlignment="Left" Margin="70,263,0,0" VerticalAlignment="Top" Width="117" Height="20"/>
-        <Button Content="Reset to Default" Background="Red" HorizontalAlignment="Left" Margin="70,336,0,0" VerticalAlignment="Top" Width="117" Height="20"/>
-        <Button Content="Exit without Saving" Background="Yellow" HorizontalAlignment="Left" Margin="70,288,0,0" VerticalAlignment="Top" Width="117" Height="20"/>
+        <Button Content="Add New" HorizontalAlignment="Left" Margin="287,379,0,0" VerticalAlignment="Top" Width="117" Height="21" Click="Add_New_Button_Click"/>
+        <Button Content="Delete Row"  Background="DarkOrange" HorizontalAlignment="Left" Margin="621,379,0,0" VerticalAlignment="Top" Width="117" Height="21" Click="Delete_Row_Button_Click"/>
+        <Button Content="Save Database" Background="ForestGreen" HorizontalAlignment="Left" Margin="70,278,0,0" VerticalAlignment="Top" Width="117" Height="20" Click="Save_Database_Button_Click"/>
+        <Button Content="Reset to Default" Background="Red" HorizontalAlignment="Left" Margin="70,379,0,0" VerticalAlignment="Top" Width="117" Height="20"/>
+        <Button Content="Exit Without Saving" Background="Yellow" HorizontalAlignment="Left" Margin="70,303,0,0" VerticalAlignment="Top" Width="117" Height="20" Click="Exit_NoSave_Button_Click"/>
+        <Button Content="Reload" HorizontalAlignment="Left" Margin="409,379,0,0" VerticalAlignment="Top" Width="117" Height="21" Click="Reload_Button_Click"/>
 
     </Grid>
 </Window>
