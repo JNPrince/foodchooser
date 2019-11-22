@@ -5,18 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         
-        Title="Food Chooser" Height="450" Width="800">
+        Title="Food Chooser" Height="450" Width="980">
+    
     <Grid Background="#7c7c7c">
-        <Menu HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50">
-            <MenuItem Header="File" HorizontalAlignment="Left" Height="20" Width="50">
-                <MenuItem Header="Options" HorizontalAlignment="Left" Height="20" Width="140"/>
-                <MenuItem Header="Quit" HorizontalAlignment="Left" Height="20" Width="140">
-
-                </MenuItem>
-            </MenuItem>
-        </Menu>
-        <Button Content="Meal Selector" HorizontalAlignment="Left" Margin="82,125,0,0" VerticalAlignment="Top" Width="283" Height="138" Click="Button_Click"/>
-        <Button Content="Meal Planner" HorizontalAlignment="Left" Margin="434,125,0,0" VerticalAlignment="Top" Width="283" Height="138"/>
-        <Menu HorizontalAlignment="Left" Height="20" Margin="50,0,0,0" VerticalAlignment="Top" Width="750"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="198*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle HorizontalAlignment="Stretch" Fill="Black" Width="2" Margin="186,0,0,0"/>
+        <Button Content="Meal Selector" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="164" Height="57" Click="Meal_Selector_Button_Click"/>
+        <Button Content="Meal Planner" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="164" Height="57"/>
     </Grid>
 </Page>

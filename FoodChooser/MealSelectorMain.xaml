@@ -5,42 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         
-        Title="Food Chooser - Meal Selector" Height="450" Width="800">
+        Title="Food Chooser - Meal Selector" Height="450" Width="980">
+
+
     <Grid Background="#7c7c7c">
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="303*"/>
-            <ColumnDefinition Width="497*"/>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="198*"/>
         </Grid.ColumnDefinitions>
-        <Menu HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50">
-            <MenuItem Header="File" HorizontalAlignment="Left" Height="20" Width="50" Click="MenuItem_Click">
-                <MenuItem Header="Home" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Click_1"/>
-                <Separator HorizontalAlignment="Left" Height="2" Width="150"/>
-                <MenuItem Header="Options" HorizontalAlignment="Left" Height="20" Width="140"/>
-                <MenuItem Header="Quit" HorizontalAlignment="Left" Height="20" Width="140">
-                </MenuItem>
+        <Rectangle HorizontalAlignment="Stretch" Fill="Black" Width="2" Margin="186,0,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Margin="49,75,0,0" TextWrapping="Wrap" Text="Choose your options:" VerticalAlignment="Top" Height="45" Width="400" FontSize="22" Grid.Column="1"/>
+        <CheckBox Content="Fast Food" Name="FastFoodCheckbox" HorizontalAlignment="Left" Margin="51,172,0,0" VerticalAlignment="Top" Checked="FastFoodCheckBox_Checked" Unchecked="FastFoodCheckBox_Unchecked" Grid.Column="1" Height="15" Width="70"/>
+        <CheckBox Content="Sit Down Restaurant" Name="SitDownRestaurantCheckbox" HorizontalAlignment="Left" Margin="51,191,0,0" VerticalAlignment="Top" Checked="SitDownRestaurant_Checked" Unchecked="SitDownRestaurant_Unchecked" Grid.Column="1" Height="15" Width="126"/>
+        <CheckBox Content="Coffee Shop" Name="CoffeeShopCheckbox" HorizontalAlignment="Left" Margin="51,152,0,0" VerticalAlignment="Top" Checked="CoffeeShop_Checked" Unchecked="CoffeeShop_Unchecked" Grid.Column="1" Height="15" Width="84"/>
+        <TextBlock HorizontalAlignment="Left" Margin="49,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" FontSize="14" Grid.Column="1" Height="19"><Run Text="Building Type"/><Run Text="s"/><Run Text=":"/></TextBlock>
+        <TextBlock Margin="207,116,122,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Grid.Column="1" Height="19"><Run Text="Food Types"/><Run Text=":"/></TextBlock>
+        <CheckBox Content="Burgers" Name="BurgersCheckbox" HorizontalAlignment="Left" Margin="207,221,0,0" VerticalAlignment="Top" Checked="Burgers_Checked" Unchecked="Burgers_Unchecked" Grid.Column="1" Height="15" Width="60"/>
+        <CheckBox Content="Chicken" Name="ChickenCheckbox" HorizontalAlignment="Left" Margin="207,161,0,0" VerticalAlignment="Top" Checked="Chicken_Checked" Unchecked="Chicken_Unchecked" Grid.Column="1" Height="15" Width="62"/>
+        <CheckBox Content="Asian" Name="AsianCheckbox" HorizontalAlignment="Left" Margin="207,181,0,0" VerticalAlignment="Top" Checked="Asian_Checked" Unchecked="Asian_Unchecked" Grid.Column="1" Height="15" Width="49"/>
+        <CheckBox Content="Subs/Sandwiches" Name="SubsCheckbox" HorizontalAlignment="Left" Margin="207,201,0,0" VerticalAlignment="Top" Checked="Subs_Checked" Unchecked="Subs_Unchecked" Grid.Column="1" Height="15" Width="112"/>
+        <CheckBox Content="Coffee" Name="CoffeeCheckbox" HorizontalAlignment="Left" Margin="207,141,0,0" VerticalAlignment="Top" Checked="Coffee_Checked" Unchecked="Coffee_Unchecked" Grid.Column="1" Height="15" Width="55"/>
+        <CheckBox Content="Mexican" Name="MexicanCheckbox" HorizontalAlignment="Left" Margin="207,241,0,0" VerticalAlignment="Top" Checked="Mexican_Checked" Unchecked="Mexican_Unchecked" Grid.Column="1" Height="15" Width="64"/>
 
-            </MenuItem>
-        </Menu>
-        <Menu HorizontalAlignment="Left" Height="20" Margin="50,0,0,0" VerticalAlignment="Top" Width="750" Grid.ColumnSpan="2"/>
-        <TextBlock HorizontalAlignment="Left" Margin="50,54,0,0" TextWrapping="Wrap" Text="Choose your options:" VerticalAlignment="Top" Height="45" Width="401" FontSize="22" Grid.ColumnSpan="2"/>
-        <CheckBox Content="Fast Food" Name="FastFoodCheckbox" HorizontalAlignment="Left" Margin="50,143,0,0" VerticalAlignment="Top" Checked="FastFoodCheckBox_Checked" Unchecked="FastFoodCheckBox_Unchecked"/>
-        <CheckBox Content="Sit Down Restaurant" Name="SitDownRestaurantCheckbox" HorizontalAlignment="Left" Margin="50,163,0,0" VerticalAlignment="Top" Checked="SitDownRestaurant_Checked" Unchecked="SitDownRestaurant_Unchecked"/>
-        <CheckBox Content="Coffee Shop" Name="CoffeeShopCheckbox" HorizontalAlignment="Left" Margin="50,124,0,0" VerticalAlignment="Top" Checked="CoffeeShop_Checked" Unchecked="CoffeeShop_Unchecked"/>
-        <TextBlock HorizontalAlignment="Left" Margin="50,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127" FontSize="14"><Run Text="Building Type"/><Run Text="s"/><Run Text=":"/></TextBlock>
-        <TextBlock Margin="246,99,454,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2"><Run Text="Food Types"/><Run Text=":"/></TextBlock>
-        <CheckBox Content="Burgers" Name="BurgersCheckbox" HorizontalAlignment="Left" Margin="246,203,0,0" VerticalAlignment="Top" Checked="Burgers_Checked" Unchecked="Burgers_Unchecked" Grid.ColumnSpan="2"/>
-        <CheckBox Content="Chicken" Name="ChickenCheckbox" HorizontalAlignment="Left" Margin="246,143,0,0" VerticalAlignment="Top" Checked="Chicken_Checked" Unchecked="Chicken_Unchecked" Grid.ColumnSpan="2"/>
-        <CheckBox Content="Asian" Name="AsianCheckbox" HorizontalAlignment="Left" Margin="246,163,0,0" VerticalAlignment="Top" Checked="Asian_Checked" Unchecked="Asian_Unchecked"/>
-        <CheckBox Content="Subs/Sandwiches" Name="SubsCheckbox" HorizontalAlignment="Left" Margin="246,183,0,0" VerticalAlignment="Top" Checked="Subs_Checked" Unchecked="Subs_Unchecked" Grid.ColumnSpan="2"/>
-        <CheckBox Content="Coffee" Name="CoffeeCheckbox" HorizontalAlignment="Left" Margin="246,123,0,0" VerticalAlignment="Top" Checked="Coffee_Checked" Unchecked="Coffee_Unchecked"/>
-        <CheckBox Content="Mexican" Name="MexicanCheckbox" HorizontalAlignment="Left" Margin="246,223,0,0" VerticalAlignment="Top" Checked="Mexican_Checked" Unchecked="Mexican_Unchecked" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="DisplayedResult" Margin="423,109,0,186" TextWrapping="Wrap" TextAlignment="Center" FontSize="28" Grid.Column="1" ><Run FontStyle="Italic" Text="{Binding textdata}"/><Run/><LineBreak/></TextBlock>
+        <Button Content="Get Result" HorizontalAlignment="Left" Margin="553,305,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Choose_Button_Click" Height="20" Grid.Column="1"/>
+        <Button Content="Select All" HorizontalAlignment="Left" Margin="49,290,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Select_All_Click" Grid.Column="1" Height="20"/>
+        <Button Content="Clear All" HorizontalAlignment="Left" Margin="162,290,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Clear_All_Click" Grid.Column="1" Height="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="572,75,0,0" TextWrapping="Wrap" Text="Result:" FontSize="22" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="1.857,0.259" Height="29" Width="63"/>
+        <Button Content="View/Edit Database" HorizontalAlignment="Left" Margin="52,330,0,0" VerticalAlignment="Top" Width="210" Height="20" Click="View_Database_Click" Grid.Column="1"/>
+        <Button Content="Meal Selector" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="164" Height="57" IsEnabled="False"/>
+        <Button Content="Meal Planner" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="164" Height="57"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,0,-2,0" TextWrapping="Wrap" Text="Meal Selector" VerticalAlignment="Top" FontSize="50" Width="784" FontStyle="Italic" TextDecorations="{x:Null}" RenderTransformOrigin="0.5,0.5" Height="65" Grid.Column="1">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="-1"/>
+                            <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-270" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF6A4037" Offset="0"/>
+                    <GradientStop Color="#FF7C7C7C" Offset="0.992"/>
+                </LinearGradientBrush>
+            </TextBlock.Background>
+        </TextBlock>
 
-        <TextBlock x:Name="DisplayedResult" Margin="179,104,24,194" TextWrapping="Wrap" TextAlignment="Center" FontSize="28" Grid.Column="1" ><Run FontStyle="Italic" Text="{Binding textdata}"/><Run/><LineBreak/></TextBlock>
-        <Button Content="Run" HorizontalAlignment="Left" Margin="50,266,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Choose_Button_Click"/>
-        <Button Content="Select All" HorizontalAlignment="Left" Margin="246,266,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Select_All_Click" Grid.ColumnSpan="2"/>
-        <Button Content="Clear All" HorizontalAlignment="Left" Margin="48,266,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Clear_All_Click" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="295,54,0,0" TextWrapping="Wrap" Text="Result:" FontSize="22" VerticalAlignment="Top" Grid.Column="1"/>
-        <Button Content="View/Edit Database" HorizontalAlignment="Left" Margin="246,291,0,0" VerticalAlignment="Top" Width="205" Height="20" Click="View_Database_Click" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Page>

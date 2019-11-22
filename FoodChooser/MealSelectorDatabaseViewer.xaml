@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodChooser"
         mc:Ignorable="d"
-        Title="Database Viewer" Height="450" Width="800">
+        Title="Database Viewer" Height="450" Width="800" ResizeMode="NoResize">
 
     <Grid Background="#7c7c7c">
         <Grid.ColumnDefinitions>
@@ -14,22 +14,22 @@
         </Grid.ColumnDefinitions>
 
 
-        <DataGrid x:Name="MealSelectorDatabaseGrid" Background="White" FontSize="14" ColumnWidth="*" GridLinesVisibility="None" HorizontalScrollBarVisibility="Hidden" SelectionUnit="FullRow" IsReadOnly="True" ItemsSource="{Binding}" Margin="288,28,0,51">
+        <DataGrid x:Name="MealSelectorDatabaseGrid" Background="White" FontSize="14" ColumnWidth="*" GridLinesVisibility="None" HorizontalScrollBarVisibility="Hidden" SelectionMode="Single" SelectionUnit="FullRow" IsReadOnly="True" ItemsSource="{Binding}" Margin="288,28,0,51" SelectionChanged="MealSelectorDatabaseGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="Auto" CanUserReorder="False" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBox x:Name="NameTextbox" Text="{Binding SelectedItem.Name, ElementName=MealSelectorDatabaseGrid}"  HorizontalAlignment="Left" Height="23" Margin="51,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+        <TextBox x:Name="NameTextbox" Text="{Binding SelectedItem.Name, ElementName=MealSelectorDatabaseGrid, Mode=OneWay}"  HorizontalAlignment="Left" Height="23" Margin="51,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
         <TextBlock HorizontalAlignment="Left" FontSize="20" Margin="51,24,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" Height="25" Width="136"/>
         <TextBlock HorizontalAlignment="Left" FontSize="20" Margin="51,82,0,0" TextWrapping="Wrap" Text="Building Type:" VerticalAlignment="Top" Height="29" Width="136"/>
         <TextBlock HorizontalAlignment="Left" FontSize="20" Margin="51,138,0,0" TextWrapping="Wrap" Text="Food Type:" VerticalAlignment="Top" Height="25" Width="136"/>
-        <ComboBox Text="{Binding SelectedItem.Building, ElementName=MealSelectorDatabaseGrid}" HorizontalAlignment="Left" Margin="51,111,0,0" VerticalAlignment="Top" Width="155">
+        <ComboBox x:Name="BuildingTypeTextbox" Text="{Binding SelectedItem.Building, ElementName=MealSelectorDatabaseGrid, Mode=OneWay}" HorizontalAlignment="Left" Margin="51,111,0,0" VerticalAlignment="Top" Width="155">
             <ComboBoxItem Content="Fast Food"/>
             <ComboBoxItem Content="Sit Down Restaurant"/>
             <ComboBoxItem Content="Coffee Shop"/>
         </ComboBox>
-        <ComboBox Text="{Binding SelectedItem.Food, ElementName=MealSelectorDatabaseGrid}" HorizontalAlignment="Left" Margin="51,168,0,0" VerticalAlignment="Top" Width="155">
+        <ComboBox x:Name="FoodTypeTextbox" Text="{Binding SelectedItem.Food, ElementName=MealSelectorDatabaseGrid, Mode=OneWay}" HorizontalAlignment="Left" Margin="51,168,0,0" VerticalAlignment="Top" Width="155">
             <ComboBoxItem Content="Asian"/>
             <ComboBoxItem Content="Burgers"/>
             <ComboBoxItem Content="Chicken"/>
@@ -37,12 +37,15 @@
             <ComboBoxItem Content="Mexican"/>
             <ComboBoxItem Content="Subs"/>
         </ComboBox>
-        <Button Content="Add New" HorizontalAlignment="Left" Margin="287,379,0,0" VerticalAlignment="Top" Width="117" Height="21" Click="Add_New_Button_Click"/>
+        <Button x:Name="AddNewButton" Content="Add New" HorizontalAlignment="Left" Margin="288,2,0,0" VerticalAlignment="Top" Width="117" Height="21" Click="Add_New_Button_Click"/>
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="51,204,0,0" VerticalAlignment="Top" Width="72" Height="21" Click="Save_Button_Click"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="134,204,0,0" VerticalAlignment="Top" Width="72" Height="21" Click="Cancel_Button_Click" RenderTransformOrigin="1.062,-0.214"/>
         <Button Content="Delete Row"  Background="DarkOrange" HorizontalAlignment="Left" Margin="621,379,0,0" VerticalAlignment="Top" Width="117" Height="21" Click="Delete_Row_Button_Click"/>
         <Button Content="Save Database" Background="ForestGreen" HorizontalAlignment="Left" Margin="70,278,0,0" VerticalAlignment="Top" Width="117" Height="20" Click="Save_Database_Button_Click"/>
         <Button Content="Reset to Default" Background="Red" HorizontalAlignment="Left" Margin="70,379,0,0" VerticalAlignment="Top" Width="117" Height="20"/>
         <Button Content="Exit Without Saving" Background="Yellow" HorizontalAlignment="Left" Margin="70,303,0,0" VerticalAlignment="Top" Width="117" Height="20" Click="Exit_NoSave_Button_Click"/>
-        <Button Content="Reload" HorizontalAlignment="Left" Margin="409,379,0,0" VerticalAlignment="Top" Width="117" Height="21" Click="Reload_Button_Click"/>
+        <Button Content="Reload" HorizontalAlignment="Left" Margin="410,2,0,0" VerticalAlignment="Top" Width="118" Height="21" Click="Reload_Button_Click"/>
+        <TextBlock x:Name="ResultTextBlock" HorizontalAlignment="Left" Margin="35,230,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding}"  FontSize="16" VerticalAlignment="Top" Height="35" Width="188" Foreground="#FF0C0C0C" ></TextBlock>
 
     </Grid>
 </Window>
