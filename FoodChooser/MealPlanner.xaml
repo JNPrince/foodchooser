@@ -1,11 +1,11 @@
-﻿<Page x:Class="FoodChooser.FoodChooserHome"
+﻿<Page x:Class="FoodChooser.MealPlanner"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         
-        Title="Food Chooser" Height="450" Width="980">
+        Title="Food Chooser - Meal Planner" Height="450" Width="980">
 
     <Grid Background="#7c7c7c">
         <Grid.ColumnDefinitions>
@@ -15,8 +15,6 @@
         <Image Margin="-5,0,0,385" Source="foodchooserlogo.png" Stretch="Fill"/>
         <Rectangle HorizontalAlignment="Stretch" Fill="Black" Width="2" Margin="186,0,0,0"/>
         <Button Content="Meal Selector" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="164" Height="57" Click="Meal_Selector_Button_Click" FontFamily="Agency FB" FontSize="30"/>
-        <Button Content="Meal Planner" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="164" Height="57" FontFamily="Agency FB" FontSize="30"/>
-        <Button Content="Options" HorizontalAlignment="Left" Margin="10,374,0,0" VerticalAlignment="Top" Width="164" Height="57" FontFamily="Agency FB" FontSize="30"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="144,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="184" Width="546" FontSize="45" TextDecorations="{x:Null}" FontFamily="Pristina" FontStyle="Italic"><Run Text="&quot;A man's gotta eat."/><Run Text="&quot;"/><LineBreak/><Run Text="&#x9;-Randy Bobandy"/></TextBlock>
+        <Button Content="Meal Planner" IsEnabled="false" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="164" Height="57" FontFamily="Agency FB" FontSize="30"/>
     </Grid>
 </Page>
