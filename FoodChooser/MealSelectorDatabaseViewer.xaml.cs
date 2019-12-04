@@ -25,13 +25,14 @@ namespace FoodChooser
     public partial class MealSelectorDatabaseViewer : Window
     {
 
-        MealSelectorDatabaseTools mealselectordatabase = new MealSelectorDatabaseTools();
+        DatabaseTools mealselectordatabase = new DatabaseTools() { whichDatabase = "MealSelector" };
         bool createdNewRow;
 
 
         public MealSelectorDatabaseViewer()
         {
             InitializeComponent();
+            mealselectordatabase.loadDatabase(mealselectordatabase.whichDatabase);
             MealSelectorDatabaseGrid.DataContext = mealselectordatabase.databaseItems.DefaultView;
             NameTextbox.IsEnabled = false;
             FoodTypeTextbox.IsEnabled = false;
@@ -47,7 +48,7 @@ namespace FoodChooser
 
         private void Reload_Button_Click(object sender, RoutedEventArgs e)
         {
-            mealselectordatabase.loadDatabase();
+            mealselectordatabase.loadDatabase(mealselectordatabase.whichDatabase);
             createdNewRow = false;
             MealSelectorDatabaseGrid.SelectedItem = null;
             mealselectordatabase.dataRemoved = false;
@@ -119,7 +120,7 @@ namespace FoodChooser
 
         private void Save_Database_Button_Click(object sender, RoutedEventArgs e)
         {
-            mealselectordatabase.saveDatabase();
+            mealselectordatabase.saveDatabase(mealselectordatabase.whichDatabase);
             if (mealselectordatabase.successfulSave == true)
             {
                 ResultTextBlock.Text = "Database write success";

@@ -187,6 +187,14 @@ namespace FoodChooser
             MealSelectorDatabaseViewer datbaseWindow = new MealSelectorDatabaseViewer();
             datbaseWindow.Show();
         }
+
+
+        private void Meal_Planner_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MealPlannerMain mealPlannerMain = new MealPlannerMain();
+            this.NavigationService.Navigate(mealPlannerMain);
+        }
+        
     }
 
 

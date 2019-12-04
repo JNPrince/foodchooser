@@ -33,9 +33,10 @@
         <Button Content="Select All" HorizontalAlignment="Left" Margin="49,322,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Select_All_Click" Grid.Column="1" Height="20"/>
         <Button Content="Clear All" HorizontalAlignment="Left" Margin="162,322,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.048,0.416" Click="Clear_All_Click" Grid.Column="1" Height="20"/>
         <TextBlock HorizontalAlignment="Left" Margin="572,75,0,0" TextWrapping="Wrap" Text="Result:" FontSize="22" VerticalAlignment="Top" Grid.Column="1" RenderTransformOrigin="1.857,0.259" Height="29" Width="63"/>
-        <Button Content="View/Edit Database" HorizontalAlignment="Left" Margin="52,399,0,0" VerticalAlignment="Top" Width="210" Height="20" Click="View_Database_Click" Grid.Column="1"/>
         <Button Content="Meal Selector" IsEnabled="false" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="164" Height="57" FontFamily="Agency FB" FontSize="30"/>
-        <Button Content="Meal Planner" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="164" Height="57" FontFamily="Agency FB" FontSize="30"/>
+        <Button Content="Meal Planner" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="164" Height="57" FontFamily="Agency FB" FontSize="30" Click="Meal_Planner_Button_Click"/>
+        <Button Content="Options" HorizontalAlignment="Left" Margin="10,374,0,0" VerticalAlignment="Top" Width="164" Height="57" FontFamily="Agency FB" FontSize="30"/>
+
         <TextBlock HorizontalAlignment="Left" Margin="10,0,-2,0" TextWrapping="Wrap" Text="Meal Selector" VerticalAlignment="Top" FontSize="50" Width="784" FontStyle="Italic" TextDecorations="{x:Null}" RenderTransformOrigin="0.5,0.5" Height="65" Grid.Column="1">
             <TextBlock.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">

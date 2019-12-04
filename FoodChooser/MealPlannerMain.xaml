@@ -1,0 +1,76 @@
+﻿<Page x:Class="FoodChooser.MealPlannerMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        
+        Title="Food Chooser - Meal Planner" Height="450" Width="980">
+
+    <Grid Background="#7c7c7c">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="198*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Left" Margin="10,0,-2,0" TextWrapping="Wrap" Text="Meal Planner" VerticalAlignment="Top" FontSize="50" Width="784" FontStyle="Italic" TextDecorations="{x:Null}" RenderTransformOrigin="0.5,0.5" Height="65" Grid.Column="1">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleY="1" ScaleX="-1"/>
+                            <SkewTransform AngleY="0" AngleX="0" CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-270" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF345F53" Offset="0"/>
+                    <GradientStop Color="#FF7C7C7C" Offset="0.992"/>
+                </LinearGradientBrush>
+            </TextBlock.Background>
+        </TextBlock>
+        <Image Margin="-5,0,0,385" Source="foodchooserlogo.png" Stretch="Fill"/>
+        <Rectangle HorizontalAlignment="Stretch" Fill="Black" Width="2" Margin="186,0,0,0"/>
+        <Button Content="Meal Selector" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="164" Height="57" Click="Meal_Selector_Button_Click" FontFamily="Agency FB" FontSize="30"/>
+        <Button Content="Meal Planner" IsEnabled="false" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="164" Height="57" FontFamily="Agency FB" FontSize="30"/>
+        <Rectangle HorizontalAlignment="Stretch" Fill="DarkGray" Width="2" Margin="313,65,477,0" Grid.Column="1"/>
+        <Grid Grid.Column="1" Margin="10,65,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="155*" />
+                <ColumnDefinition Width="231*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="21,76,0,0" TextWrapping="Wrap" Text="Sunday:" VerticalAlignment="Top" FontSize="28" Width="148" Height="37"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="21,298,0,0" TextWrapping="Wrap" Text="Saturday:" VerticalAlignment="Top" FontSize="28" Width="148" Height="37"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="21,261,0,0" TextWrapping="Wrap" Text="Friday:" VerticalAlignment="Top" FontSize="28" Width="148" Height="37"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="21,224,0,0" TextWrapping="Wrap" Text="Thursday:" VerticalAlignment="Top" FontSize="28" Width="148" Height="37"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="21,187,0,0" TextWrapping="Wrap" Text="Wednesday:" VerticalAlignment="Top" FontSize="28" Height="37" Width="149"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="21,150,0,0" TextWrapping="Wrap" Text="Tuesday:" VerticalAlignment="Top" FontSize="28" Width="148" Height="37"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="21,113,0,0" TextWrapping="Wrap" Text="Monday:" VerticalAlignment="Top" FontSize="28" Width="148" Height="37"/>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="130,10,0,0" TextWrapping="Wrap" Text="Schedule:" VerticalAlignment="Top" FontSize="35" TextDecorations="Underline" FontWeight="Bold" Height="47" Width="158"/>
+            <ListBox x:Name ="MealOptionsBox"  ItemsSource="{Binding}" SelectionMode="Multiple" HorizontalAlignment="Left" Height="235" Margin="22,56,0,0" VerticalAlignment="Top" Width="254"/>
+            <Button Content="GENERATE" HorizontalAlignment="Left" Margin="22,298,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Generate_Button_Click" />
+            <TextBlock HorizontalAlignment="Left" Margin="40,10,0,0" TextWrapping="Wrap" Text="Meal Options" VerticalAlignment="Top" Height="41" Width="218" FontSize="35" TextDecorations="Underline"/>
+            <Button Content="Select None" HorizontalAlignment="Left" Margin="157,325,0,0" VerticalAlignment="Top" Width="119" Height="23" Click="Select_None_Button_Click"/>
+            <Button Content="Select All" HorizontalAlignment="Left" Margin="157,298,0,0" VerticalAlignment="Top" Width="119" Height="24" Click="Select_All_Button_Click"/>
+            <TextBlock x:Name="SundayResultBox" Grid.Column="1" HorizontalAlignment="Left" Margin="177,76,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" FontSize="28" Width="272" Height="37"/>
+            <TextBlock x:Name="MondayResultBox" Grid.Column="1" HorizontalAlignment="Left" Margin="177,113,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" FontSize="28" Width="272" Height="37"/>
+            <TextBlock x:Name="TuesdayResultBox" Grid.Column="1" HorizontalAlignment="Left" Margin="177,150,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" FontSize="28" Width="272" Height="37"/>
+            <TextBlock x:Name="WednesdayResultBox" Grid.Column="1" HorizontalAlignment="Left" Margin="177,187,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" FontSize="28" Width="272" Height="37"/>
+            <TextBlock x:Name="ThursdayResultBox" Grid.Column="1" HorizontalAlignment="Left" Margin="177,224,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" FontSize="28" Width="273" Height="37"/>
+            <TextBlock x:Name="FridayResultBox" Grid.Column="1" HorizontalAlignment="Left" Margin="177,261,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" FontSize="28" Width="274" Height="37"/>
+            <TextBlock x:Name="SaturdayResultBox" Grid.Column="1" HorizontalAlignment="Left" Margin="176,298,0,0" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" FontSize="28" Width="273" Height="37"/>
+            <CheckBox x:Name="SundayCheckbox" Grid.Column="1" HorizontalAlignment="Left" Margin="0,89,0,0" VerticalAlignment="Top" Height="14" Width="16" IsChecked="true" Checked="SundayCheckbox_Checked" Unchecked="SundayCheckbox_UnChecked"/>
+            <CheckBox x:Name="MondayCheckbox" Grid.Column="1" HorizontalAlignment="Left" Margin="0,125,0,0" VerticalAlignment="Top" Height="14" Width="16" IsChecked="true" Checked="MondayCheckbox_Checked" Unchecked="MondayCheckbox_UnChecked"/>
+            <CheckBox x:Name="TuesdayCheckbox" Grid.Column="1" HorizontalAlignment="Left" Margin="0,163,0,0" VerticalAlignment="Top" Height="14" Width="16" IsChecked="true" Checked="TuesdayCheckbox_Checked" Unchecked="TuesdayCheckbox_UnChecked"/>
+            <CheckBox x:Name="WednesdayCheckbox" Grid.Column="1" HorizontalAlignment="Left" Margin="0,199,0,0" VerticalAlignment="Top" Height="14" Width="16" IsChecked="true" Checked="WednesdayCheckbox_Checked" Unchecked="WednesdayCheckbox_UnChecked"/>
+            <CheckBox x:Name="ThursdayCheckbox" Grid.Column="1" HorizontalAlignment="Left" Margin="0,237,0,0" VerticalAlignment="Top" Height="14" Width="16" IsChecked="true" Checked="ThursdayCheckbox_Checked" Unchecked="ThursdayCheckbox_UnChecked"/>
+            <CheckBox x:Name="FridayCheckbox" Grid.Column="1" HorizontalAlignment="Left" Margin="0,273,0,0" VerticalAlignment="Top" Height="14" Width="16" IsChecked="true" Checked="FridayCheckbox_Checked" Unchecked="FridayCheckbox_UnChecked"/>
+            <CheckBox x:Name="SaturdayCheckbox" Grid.Column="1" HorizontalAlignment="Left" Margin="0,311,0,0" VerticalAlignment="Top" Height="14" Width="16" IsChecked="true" Checked="SaturdayCheckbox_Checked" Unchecked="SaturdayCheckbox_UnChecked"/>
+
+
+        </Grid>
+
+    </Grid>
+</Page>

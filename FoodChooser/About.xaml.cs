@@ -10,27 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace FoodChooser
 {
     /// <summary>
-    /// Interaction logic for MealPlanner.xaml
+    /// Interaction logic for About.xaml
     /// </summary>
-    public partial class MealPlanner : Page
+    public partial class About : Window
     {
-        public MealPlanner()
+
+        public About()
         {
             InitializeComponent();
+            versionNumberBox.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            //versionNumberBox.Text = "v" + Convert.ToString(version.versionNumber);
         }
 
-        private void Meal_Selector_Button_Click(object sender, RoutedEventArgs e)
-        {
-            //Open Meal Selector on click
-            MealSelectorMain mealSelectorMain = new MealSelectorMain();
-            this.NavigationService.Navigate(mealSelectorMain);
 
-        }
     }
 }

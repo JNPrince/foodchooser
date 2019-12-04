@@ -18,6 +18,14 @@ namespace FoodChooser
 
         private HashSet<string> _results { get; set; }
 
+        public MealSelector()
+        {
+            buildingTypeSelections = new List<string>();
+            foodTypeSelections = new List<string>();
+
+            _results = new HashSet<string>();
+        }
+
         public string results
         {
             get
@@ -35,14 +43,6 @@ namespace FoodChooser
                     return "You haven't selected any items";
                 }
             }
-        }
-
-        public MealSelector()
-        {
-            buildingTypeSelections = new List<string>();
-            foodTypeSelections = new List<string>();
-
-            _results = new HashSet<string>();
         }
 
 
@@ -90,91 +90,6 @@ namespace FoodChooser
         }
 
     }
-
-    class MealSelectorDatabaseTools
-    {
-        public DataTable databaseItems = new DataTable();
-
-        public bool dataRemoved;
-        public List<string> removedRows;
-        public bool? successfulSave;
-
-        public MealSelectorDatabaseTools()
-        {
-            removedRows = new List<string>();
-            successfulSave = null;
-            loadDatabase();
-        }
-
-        public void loadDatabase()
-        {
-            try
-            {
-                databaseItems.Clear();
-                SQLiteConnection maindatabase = new SQLiteConnection("DataSource=maindatabase.db; Version=3;");
-                maindatabase.Open();
-                string sqlCommandString = "SELECT * FROM MealSelector ORDER BY Name ASC";
-                SQLiteCommand command = new SQLiteCommand(sqlCommandString, maindatabase);
-                SQLiteDataReader reader = command.ExecuteReader(CommandBehavior.SingleResult);
-                databaseItems.Load(reader);
-            }
-            catch (Exception error)
-            {
-                System.Windows.MessageBox.Show(Convert.ToString(error));
-            }
-
-            dataRemoved = false;
-            removedRows.Clear();
-
-        }
-
-        
-        public void saveDatabase()
-        {
-
-            try
-            {
-                SQLiteConnection maindatabase = new SQLiteConnection("DataSource=maindatabase.db; Version=3;");
-                maindatabase.Open();
-                SQLiteCommand sqlCommand = maindatabase.CreateCommand();
-
-                //Add new entries
-
-                sqlCommand.CommandText = $"SELECT * from {databaseItems}";
-                SQLiteDataAdapter adapter = new SQLiteDataAdapter(sqlCommand);
-                SQLiteCommandBuilder builder = new SQLiteCommandBuilder(adapter);
-                adapter.Update(databaseItems);
-
-                if (dataRemoved == true)
-                {
-
-                    //Fuckin thing SUCKS
-
-                    string removedRowsString = string.Join(", ", removedRows);
-
-                    //Remove deleted entries
-                    sqlCommand.CommandText = $"DELETE FROM MealSelector WHERE Name IN ({removedRowsString})";
-                    sqlCommand.ExecuteNonQuery();
-                    
-
-                }
-                maindatabase.Close();
-                successfulSave = true;
-
-            }
-            catch (Exception error)
-            {
-                System.Windows.MessageBox.Show(Convert.ToString(error));
-            }
-            
-
-        } 
-        
-
-    }
-
-
-
 
 
 }

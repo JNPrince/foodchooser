@@ -16,34 +16,42 @@ using System.Windows.Shapes;
 namespace FoodChooser
 {
     /// <summary>
-    /// Interaction logic for FoodChooser.xaml
+    /// Interaction logic for Options.xaml
     /// </summary>
-    public partial class FoodChooserHome : Page
+    public partial class Options : Page
     {
-        public FoodChooserHome()
+        public Options()
         {
             InitializeComponent();
         }
 
+        //Menu buttons
         private void Meal_Selector_Button_Click(object sender, RoutedEventArgs e)
         {
-            //Open Meal Selector on click
             MealSelectorMain mealSelectorMain = new MealSelectorMain();
             this.NavigationService.Navigate(mealSelectorMain);
-
         }
 
-        private void Options_Button_Click(object sender, RoutedEventArgs e)
+        //Main app buttons
+
+        private void Edit_Database_Button_Click(object sender, RoutedEventArgs e)
         {
-            Options options = new Options();
-            this.NavigationService.Navigate(options);
+            if (DatabaseSelectorBox.Text == "")
+            {
+                System.Windows.MessageBox.Show("Please select a database", "Select database");
+            }
+
+            if (DatabaseSelectorBox.Text == "Meal Selector - Fast Food")
+            {
+                MealSelectorDatabaseViewer datbaseWindow = new MealSelectorDatabaseViewer();
+                datbaseWindow.Show();
+            }
         }
 
-        private void Meal_Planner_Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MealPlannerMain mealPlannerMain = new MealPlannerMain();
-            this.NavigationService.Navigate(mealPlannerMain);
+            About aboutwindow = new About();
+            aboutwindow.Show();
         }
     }
 }
-

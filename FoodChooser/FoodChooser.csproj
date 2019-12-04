@@ -74,7 +74,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MealPlanner.xaml">
+    <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MealPlannerMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -86,12 +90,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MealPlanner.xaml.cs">
-      <DependentUpon>MealPlanner.xaml</DependentUpon>
+    <Compile Include="DatabaseTools.cs" />
+    <Compile Include="MealPlanner.cs" />
+    <Compile Include="MealPlannerMain.xaml.cs">
+      <DependentUpon>MealPlannerMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="MealSelectorDatabaseViewer.xaml.cs">
       <DependentUpon>MealSelectorDatabaseViewer.xaml</DependentUpon>
@@ -107,6 +116,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Options.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.xaml.cs">
@@ -115,6 +128,9 @@
     <Compile Include="MealSelector.cs" />
     <Compile Include="MealSelectorMain.xaml.cs">
       <DependentUpon>MealSelectorMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Options.xaml.cs">
+      <DependentUpon>Options.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
