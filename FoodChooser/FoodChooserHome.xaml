@@ -5,18 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         
-        Title="Food Chooser" Height="450" Width="980">
+        Title="Food Chooser" Height="450" Width="790">
 
     <Grid Background="#7c7c7c">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="47*"/>
-            <ColumnDefinition Width="198*"/>
-        </Grid.ColumnDefinitions>
-        <Image Margin="-5,0,0,385" Source="foodchooserlogo.png" Stretch="Fill"/>
-        <Rectangle HorizontalAlignment="Stretch" Fill="Black" Width="2" Margin="186,0,0,0"/>
-        <Button Content="Meal Selector" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="164" Height="57" Click="Meal_Selector_Button_Click" FontFamily="Agency FB" FontSize="30"/>
-        <Button Content="Meal Planner" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="164" Height="57" FontFamily="Agency FB" FontSize="30" Click="Meal_Planner_Button_Click"/>
-        <Button Content="Options" HorizontalAlignment="Left" Margin="10,374,0,0" VerticalAlignment="Top" Width="164" Height="57" FontFamily="Agency FB" FontSize="30" Click="Options_Button_Click"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="160,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="184" Width="546" FontSize="45" TextDecorations="{x:Null}" FontFamily="Pristina" FontStyle="Italic"><Run Text="&quot;A man's gotta eat."/><Run Text="&quot;"/><LineBreak/><Run Text="&#x9;-Randy Bobandy"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="149,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="184" Width="546" FontSize="45" TextDecorations="{x:Null}" FontFamily="Pristina" FontStyle="Italic"><Run Text="&quot;A man's gotta eat."/><Run Text="&quot;"/><LineBreak/><Run Text="&#x9;-Randy Bobandy"/></TextBlock>
     </Grid>
 </Page>

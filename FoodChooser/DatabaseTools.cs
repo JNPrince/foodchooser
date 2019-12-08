@@ -17,6 +17,7 @@ namespace FoodChooser
         public bool dataRemoved;
         public List<string> removedRows;
         public bool? successfulSave;
+        public bool? databaseModified;
 
         public DatabaseTools()
         {

@@ -41,17 +41,25 @@ namespace FoodChooser
                 System.Windows.MessageBox.Show("Please select a database", "Select database");
             }
 
-            if (DatabaseSelectorBox.Text == "Meal Selector - Fast Food")
+            if (DatabaseSelectorBox.Text == "Meal Selector")
             {
-                MealSelectorDatabaseViewer datbaseWindow = new MealSelectorDatabaseViewer();
-                datbaseWindow.Show();
+                MealSelectorDatabaseViewer databaseWindow = new MealSelectorDatabaseViewer();
+                databaseWindow.Show();
             }
+            if (DatabaseSelectorBox.Text == "Meal Planner - Home Cooked")
+            {
+                MealPlannerDatabaseViewer databaseWindow = new MealPlannerDatabaseViewer();
+                databaseWindow.Show();
+            }
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void About_Button_Click(object sender, RoutedEventArgs e)
         {
             About aboutwindow = new About();
             aboutwindow.Show();
         }
+
+
     }
 }

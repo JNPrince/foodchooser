@@ -28,6 +28,8 @@ namespace FoodChooser
         public MealPlannerMain()
         {
             InitializeComponent();
+            this.ShowsNavigationUI = false;
+
             MealOptionsBox.ItemsSource = mealplanner.mealOptions;
             mealplanner.dayResults = new List<TextBlock> 
             { 
@@ -38,16 +40,6 @@ namespace FoodChooser
                 mealplanner.dayResults[day].Text = "None";
             }
         }
-
-        //SIDEBAR MAIN BUTTONS
-        private void Meal_Selector_Button_Click(object sender, RoutedEventArgs e)
-        {
-            //Open Meal Selector on click
-            MealSelectorMain mealSelectorMain = new MealSelectorMain();
-            this.NavigationService.Navigate(mealSelectorMain);
-        }
-
-        //APPLICATION BUTTONS
         private void Select_All_Button_Click(object sender, RoutedEventArgs e)
         {
             MealOptionsBox.Focus();
@@ -60,34 +52,16 @@ namespace FoodChooser
         }
         private void Generate_Button_Click(object sender, RoutedEventArgs e)
         {
-            //Make error message for not enough options selected
+            mealplanner.selectedOptions = new List<string>(MealOptionsBox.SelectedItems.Cast<string>().ToList());
 
-            List<string> selectedOptions = new List<string>(MealOptionsBox.SelectedItems.Cast<string>().ToList());
-            if (selectedOptions.Count < mealplanner.selectedDays.Count)
+            if (mealplanner.selectedOptions.Count < mealplanner.selectedDays.Count(b => b))
             {
                 System.Windows.MessageBox.Show("Not enough meal options selected. Select more options or less days to schedule.", "Not enough selections");
             }
 
             else
             {
-                int currentIteration = 0;
-                foreach (bool selectedDay in mealplanner.selectedDays)
-                {
-
-                    if (selectedDay == true)
-                    {
-                        Random random = new Random();
-                        int randomIndex = random.Next(selectedOptions.Count);
-                        string currentMeal = selectedOptions[randomIndex];
-                        mealplanner.dayResults[currentIteration].Text = currentMeal;
-                        selectedOptions.Remove(currentMeal);
-                    }
-                    else if (selectedDay == false)
-                    {
-                        mealplanner.dayResults[currentIteration].Text = "None";
-                    }
-                    currentIteration++;
-                }
+                mealplanner.generateSchedule();
             }
             
         }
@@ -160,7 +134,6 @@ namespace FoodChooser
         {
             mealplanner.selectedDays[6] = false;
         }
-
 
     }
 }

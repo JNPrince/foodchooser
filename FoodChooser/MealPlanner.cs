@@ -13,6 +13,7 @@ namespace FoodChooser
         public List<string> mealOptions { get; }
         public List<bool> selectedDays;
         public List<TextBlock> dayResults;
+        public List<string> selectedOptions;
 
         public MealPlanner()
         {
@@ -36,7 +37,24 @@ namespace FoodChooser
 
         public void generateSchedule()
         {
+            int currentIteration = 0;
+            foreach (bool selectedDay in selectedDays)
+            {
 
+                if (selectedDay == true)
+                {
+                    Random random = new Random();
+                    int randomIndex = random.Next(selectedOptions.Count);
+                    string currentMeal = selectedOptions[randomIndex];
+                    dayResults[currentIteration].Text = currentMeal;
+                    selectedOptions.Remove(currentMeal);
+                }
+                else if (selectedDay == false)
+                {
+                    dayResults[currentIteration].Text = "None";
+                }
+                currentIteration++;
+            }
         }
     }
 }

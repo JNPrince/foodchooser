@@ -4,15 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
+        ShowsNavigationUI="False"
         
-        Title="Food Chooser - Meal Planner" Height="450" Width="980">
+        Title="Food Chooser - Meal Planner" Height="450" Width="790">
 
     <Grid Background="#7c7c7c">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="47*"/>
-            <ColumnDefinition Width="198*"/>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock HorizontalAlignment="Left" Margin="10,0,-2,0" TextWrapping="Wrap" Text="Meal Planner" VerticalAlignment="Top" FontSize="50" Width="784" FontStyle="Italic" TextDecorations="{x:Null}" RenderTransformOrigin="0.5,0.5" Height="65" Grid.Column="1">
+        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Meal Planner" VerticalAlignment="Top" FontSize="50" Width="784" FontStyle="Italic" TextDecorations="{x:Null}" RenderTransformOrigin="0.5,0.5" Height="65" Grid.Column="1">
             <TextBlock.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <LinearGradientBrush.RelativeTransform>
@@ -28,12 +29,8 @@
                 </LinearGradientBrush>
             </TextBlock.Background>
         </TextBlock>
-        <Image Margin="-5,0,0,385" Source="foodchooserlogo.png" Stretch="Fill"/>
-        <Rectangle HorizontalAlignment="Stretch" Fill="Black" Width="2" Margin="186,0,0,0"/>
-        <Button Content="Meal Selector" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="164" Height="57" Click="Meal_Selector_Button_Click" FontFamily="Agency FB" FontSize="30"/>
-        <Button Content="Meal Planner" IsEnabled="false" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="164" Height="57" FontFamily="Agency FB" FontSize="30"/>
-        <Rectangle HorizontalAlignment="Stretch" Fill="DarkGray" Width="2" Margin="313,65,477,0" Grid.Column="1"/>
-        <Grid Grid.Column="1" Margin="10,65,10,10">
+        <Rectangle HorizontalAlignment="Stretch" Fill="DarkGray" Margin="314,65,662,0" Grid.Column="1"/>
+        <Grid Grid.Column="1" Margin="10,65,10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="155*" />
                 <ColumnDefinition Width="231*" />

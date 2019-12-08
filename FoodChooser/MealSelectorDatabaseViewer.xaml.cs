@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace FoodChooser
 {
@@ -53,6 +53,7 @@ namespace FoodChooser
             MealSelectorDatabaseGrid.SelectedItem = null;
             mealselectordatabase.dataRemoved = false;
             mealselectordatabase.removedRows.Clear();
+            SaveDatabaseButton.IsEnabled = true;
         }
 
         private void Add_New_Button_Click(object sender, RoutedEventArgs e)
@@ -62,6 +63,10 @@ namespace FoodChooser
             FoodTypeTextbox.IsEnabled = true;
             BuildingTypeTextbox.IsEnabled = true;
             AddNewButton.IsEnabled = false;
+            RequiredFieldIcon_Name.Visibility = Visibility.Visible;
+            RequiredFieldIcon_BuildingType.Visibility = Visibility.Visible;
+            RequiredFieldIcon_FoodType.Visibility = Visibility.Visible;
+            SaveDatabaseButton.IsEnabled = false;
 
         }
         private void Save_Button_Click(object sender, RoutedEventArgs e)
@@ -103,6 +108,17 @@ namespace FoodChooser
                 {
                     System.Windows.MessageBox.Show(Convert.ToString(error));
                 }
+                NameTextbox.Clear();
+                BuildingTypeTextbox.Text = "";
+                FoodTypeTextbox.Text = "";
+                NameTextbox.IsEnabled = false;
+                BuildingTypeTextbox.IsEnabled = false;
+                FoodTypeTextbox.IsEnabled = false;
+                RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
+                RequiredFieldIcon_BuildingType.Visibility = Visibility.Hidden;
+                RequiredFieldIcon_FoodType.Visibility = Visibility.Hidden;
+                SaveDatabaseButton.IsEnabled = true;
+                mealselectordatabase.databaseModified = true;
             }
             else
             {
@@ -116,6 +132,13 @@ namespace FoodChooser
             NameTextbox.IsEnabled = false;
             FoodTypeTextbox.IsEnabled = false;
             BuildingTypeTextbox.IsEnabled = false;
+            NameTextbox.Clear();
+            BuildingTypeTextbox.Text = "";
+            FoodTypeTextbox.Text = "";
+            RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
+            RequiredFieldIcon_BuildingType.Visibility = Visibility.Hidden;
+            RequiredFieldIcon_FoodType.Visibility = Visibility.Hidden;
+            SaveDatabaseButton.IsEnabled = true;
         }
 
         private void Save_Database_Button_Click(object sender, RoutedEventArgs e)
@@ -131,8 +154,15 @@ namespace FoodChooser
 
         private void Exit_NoSave_Button_Click(object sender, RoutedEventArgs e)
         {
-            //Make a "are you sure" window if not saved
-            this.Close();
+            MessageBoxResult exitnosaveprompt = MessageBox.Show("Are you sure you want to exit? The database will not be saved.", "Confirmation", MessageBoxButton.YesNo);
+            switch (exitnosaveprompt)
+            {
+                case MessageBoxResult.Yes:
+                    this.Close();
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
         }
 
         private void Delete_Row_Button_Click(object sender, RoutedEventArgs e)
@@ -145,6 +175,12 @@ namespace FoodChooser
                 mealselectordatabase.removedRows.Add("'" + Convert.ToString(deletedRow[0]) + "'");
                 mealselectordatabase.databaseItems.Rows.Remove(deletedRow);
                 MealSelectorDatabaseGrid.SelectedItem = null;
+                NameTextbox.Clear();
+                BuildingTypeTextbox.Text = "";
+                FoodTypeTextbox.Text = "";
+                NameTextbox.IsEnabled = false;
+                BuildingTypeTextbox.IsEnabled = false;
+                FoodTypeTextbox.IsEnabled = false;
             }
             catch (System.IndexOutOfRangeException)
             {
