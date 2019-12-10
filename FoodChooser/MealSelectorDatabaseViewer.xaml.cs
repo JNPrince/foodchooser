@@ -1,19 +1,8 @@
 ﻿using System;
 using System.Data;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace FoodChooser
 {
@@ -73,53 +62,63 @@ namespace FoodChooser
         {
             if (NameTextbox.Text != "" && BuildingTypeTextbox.Text != "" && FoodTypeTextbox.Text != "")
             {
-                try
+                bool containsLettersorNumbersCheck = Regex.IsMatch(NameTextbox.Text, @"[^a - zA - Z0 - 9\s']");
+                if (containsLettersorNumbersCheck == true)
                 {
-                    if (createdNewRow == true)
+                    try
                     {
-                        DataRow newRow = mealselectordatabase.databaseItems.NewRow();
-                        newRow["Name"] = NameTextbox.Text;
-                        newRow["Building"] = BuildingTypeTextbox.Text;
-                        newRow["Food"] = FoodTypeTextbox.Text;
-                        mealselectordatabase.databaseItems.Rows.Add(newRow);
-                        ResultTextBlock.Text = "New item added";
-                        MealSelectorDatabaseGrid.SelectedItem = null;
-                        NameTextbox.IsEnabled = false;
-                        FoodTypeTextbox.IsEnabled = false;
-                        BuildingTypeTextbox.IsEnabled = false;
-                        createdNewRow = false;
-                        AddNewButton.IsEnabled = true;
+                        if (createdNewRow == true)
+                        {
+                            DataRow newRow = mealselectordatabase.databaseItems.NewRow();
+                            newRow["Name"] = NameTextbox.Text;
+                            newRow["Building"] = BuildingTypeTextbox.Text;
+                            newRow["Food"] = FoodTypeTextbox.Text;
+                            mealselectordatabase.databaseItems.Rows.Add(newRow);
+                            ResultTextBlock.Text = "New item added";
+                            MealSelectorDatabaseGrid.SelectedItem = null;
+                            NameTextbox.IsEnabled = false;
+                            FoodTypeTextbox.IsEnabled = false;
+                            BuildingTypeTextbox.IsEnabled = false;
+                            createdNewRow = false;
+                            AddNewButton.IsEnabled = true;
+                        }
+                        else
+                        {
+                            int userSelectedRow = MealSelectorDatabaseGrid.SelectedIndex;
+                            mealselectordatabase.databaseItems.Rows[userSelectedRow]["Name"] = NameTextbox.Text;
+                            mealselectordatabase.databaseItems.Rows[userSelectedRow]["Building"] = BuildingTypeTextbox.Text;
+                            mealselectordatabase.databaseItems.Rows[userSelectedRow]["Food"] = FoodTypeTextbox.Text;
+                            ResultTextBlock.Text = "Item updated";
+                            MealSelectorDatabaseGrid.SelectedItem = null;
+                            NameTextbox.IsEnabled = false;
+                            FoodTypeTextbox.IsEnabled = false;
+                            BuildingTypeTextbox.IsEnabled = false;
+                            AddNewButton.IsEnabled = true;
+                        }
                     }
-                    else
+                    catch (Exception error)
                     {
-                        int userSelectedRow = MealSelectorDatabaseGrid.SelectedIndex;
-                        mealselectordatabase.databaseItems.Rows[userSelectedRow]["Name"] = NameTextbox.Text;
-                        mealselectordatabase.databaseItems.Rows[userSelectedRow]["Building"] = BuildingTypeTextbox.Text;
-                        mealselectordatabase.databaseItems.Rows[userSelectedRow]["Food"] = FoodTypeTextbox.Text;
-                        ResultTextBlock.Text = "Item updated";
-                        MealSelectorDatabaseGrid.SelectedItem = null;
-                        NameTextbox.IsEnabled = false;
-                        FoodTypeTextbox.IsEnabled = false;
-                        BuildingTypeTextbox.IsEnabled = false;
-                        AddNewButton.IsEnabled = true;
+                        System.Windows.MessageBox.Show(Convert.ToString(error));
                     }
+                    NameTextbox.Clear();
+                    BuildingTypeTextbox.Text = "";
+                    FoodTypeTextbox.Text = "";
+                    NameTextbox.IsEnabled = false;
+                    BuildingTypeTextbox.IsEnabled = false;
+                    FoodTypeTextbox.IsEnabled = false;
+                    RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
+                    RequiredFieldIcon_BuildingType.Visibility = Visibility.Hidden;
+                    RequiredFieldIcon_FoodType.Visibility = Visibility.Hidden;
+                    SaveDatabaseButton.IsEnabled = true;
+                    mealselectordatabase.databaseModified = true;
                 }
-                catch (Exception error)
+                else
                 {
-                    System.Windows.MessageBox.Show(Convert.ToString(error));
+                    System.Windows.MessageBox.Show("Invalid Name field, name must contain only letter or numbers or apostophe, and not be blank.", "Invalid name");
                 }
-                NameTextbox.Clear();
-                BuildingTypeTextbox.Text = "";
-                FoodTypeTextbox.Text = "";
-                NameTextbox.IsEnabled = false;
-                BuildingTypeTextbox.IsEnabled = false;
-                FoodTypeTextbox.IsEnabled = false;
-                RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
-                RequiredFieldIcon_BuildingType.Visibility = Visibility.Hidden;
-                RequiredFieldIcon_FoodType.Visibility = Visibility.Hidden;
-                SaveDatabaseButton.IsEnabled = true;
-                mealselectordatabase.databaseModified = true;
-            }
+
+            }       
+
             else
             {
                 System.Windows.MessageBox.Show("Missing a required field or nothing selected", "Missing information");

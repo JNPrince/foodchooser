@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SQLite;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace FoodChooser
@@ -24,15 +22,24 @@ namespace FoodChooser
 
         public void loadMealList()
         {
-            SQLiteConnection maindatabase = new SQLiteConnection("DataSource=maindatabase.db; Version=3;");
-            maindatabase.Open();
-            string sqlCommandString = "SELECT Name from HomeCookedMeals";
-            SQLiteCommand command = new SQLiteCommand(sqlCommandString, maindatabase);
-            SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                mealOptions.Add(reader["Name"].ToString());
+                SQLiteConnection maindatabase = new SQLiteConnection("DataSource=maindatabase.db; Version=3;");
+                maindatabase.Open();
+                string sqlCommandString = "SELECT Name from HomeCookedMeals";
+                SQLiteCommand command = new SQLiteCommand(sqlCommandString, maindatabase);
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    mealOptions.Add(reader["Name"].ToString());
+                }
             }
+            catch(Exception error)
+            {
+                System.Windows.MessageBox.Show(Convert.ToString(error));
+            }
+        
+
         }
 
         public void generateSchedule()
@@ -47,11 +54,13 @@ namespace FoodChooser
                     int randomIndex = random.Next(selectedOptions.Count);
                     string currentMeal = selectedOptions[randomIndex];
                     dayResults[currentIteration].Text = currentMeal;
+                    dayResults[currentIteration].FontStyle = FontStyles.Normal;
                     selectedOptions.Remove(currentMeal);
                 }
                 else if (selectedDay == false)
                 {
                     dayResults[currentIteration].Text = "None";
+                    dayResults[currentIteration].FontStyle = FontStyles.Italic;
                 }
                 currentIteration++;
             }

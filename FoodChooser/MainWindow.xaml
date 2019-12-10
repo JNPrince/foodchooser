@@ -12,10 +12,10 @@
             <ColumnDefinition Width="790"/>
         </Grid.ColumnDefinitions>
         <Grid>
-            <Image Margin="-5,0,0,364" Source="foodchooserlogo.png" Stretch="Fill"/>
-            <Button Content="Meal Selector" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="164" Height="57"  FontFamily="Agency FB" FontSize="30" Click="Meal_Selector_Button_Click"/>
-            <Button Content="Meal Planner"  HorizontalAlignment="Left" Margin="10,161,0,0" VerticalAlignment="Top" Width="164" Height="58" FontFamily="Agency FB" FontSize="30" Click="Meal_Planner_Button_Click"/>
-            <Button Content="Options" HorizontalAlignment="Left" Margin="10,360,0,0" VerticalAlignment="Top" Width="164" Height="58" FontFamily="Agency FB" FontSize="30" Click="Options_Button_Click"/>
+            <Image Margin="-5,0,0,364" Source="images/foodchooserlogo.png" Stretch="Fill"/>
+            <Button x:Name="MealSelectorButton" Content="Meal Selector" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="164" Height="57"  FontFamily="Agency FB" FontSize="30" Click="Meal_Selector_Button_Click"/>
+            <Button x:Name="MealPlannerButton" Content="Meal Planner"  HorizontalAlignment="Left" Margin="10,161,0,0" VerticalAlignment="Top" Width="164" Height="58" FontFamily="Agency FB" FontSize="30" Click="Meal_Planner_Button_Click"/>
+            <Button x:Name="OptionsButton" Content="Options" HorizontalAlignment="Left" Margin="10,360,0,0" VerticalAlignment="Top" Width="164" Height="58" FontFamily="Agency FB" FontSize="30" Click="Options_Button_Click"/>
 
         </Grid>
         <Frame x:Name="MainProgramArea" Grid.Column="1" HorizontalAlignment="Left" Height="421" VerticalAlignment="Top" Width="787" NavigationUIVisibility="Hidden" Source="FoodChooserHome.xaml"/>

@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace FoodChooser
 {
@@ -64,43 +54,53 @@ namespace FoodChooser
         {
             if (NameTextbox.Text != "")
             {
-                try
+                bool containsLettersorNumbersCheck = Regex.IsMatch(NameTextbox.Text, @"[^a - zA - Z0 - 9\\s']");
+                if (containsLettersorNumbersCheck == true)
                 {
-                    if (createdNewRow == true)
+                    try
                     {
-                        DataRow newRow = mealplannerdatabase.databaseItems.NewRow();
-                        newRow["Name"] = NameTextbox.Text;
-                        mealplannerdatabase.databaseItems.Rows.Add(newRow);
-                        ResultTextBlock.Text = "New item added";
-                        MealPlannerDatabaseGrid.SelectedItem = null;
-                        NameTextbox.IsEnabled = false;
-                        createdNewRow = false;
-                        AddNewButton.IsEnabled = true;
+                        if (createdNewRow == true)
+                        {
+                            DataRow newRow = mealplannerdatabase.databaseItems.NewRow();
+                            newRow["Name"] = NameTextbox.Text;
+                            mealplannerdatabase.databaseItems.Rows.Add(newRow);
+                            ResultTextBlock.Text = "New item added";
+                            MealPlannerDatabaseGrid.SelectedItem = null;
+                            NameTextbox.IsEnabled = false;
+                            createdNewRow = false;
+                            AddNewButton.IsEnabled = true;
+                        }
+                        else
+                        {
+                            int userSelectedRow = MealPlannerDatabaseGrid.SelectedIndex;
+                            mealplannerdatabase.databaseItems.Rows[userSelectedRow]["Name"] = NameTextbox.Text;
+                            ResultTextBlock.Text = "Item updated";
+                            MealPlannerDatabaseGrid.SelectedItem = null;
+                            NameTextbox.IsEnabled = false;
+                            AddNewButton.IsEnabled = true;
+                        }
                     }
-                    else
+                    catch (Exception error)
                     {
-                        int userSelectedRow = MealPlannerDatabaseGrid.SelectedIndex;
-                        mealplannerdatabase.databaseItems.Rows[userSelectedRow]["Name"] = NameTextbox.Text;
-                        ResultTextBlock.Text = "Item updated";
-                        MealPlannerDatabaseGrid.SelectedItem = null;
-                        NameTextbox.IsEnabled = false;
-                        AddNewButton.IsEnabled = true;
+                        System.Windows.MessageBox.Show(Convert.ToString(error));
                     }
+                    NameTextbox.Clear();
+                    NameTextbox.IsEnabled = false;
+                    RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
+                    SaveDatabaseButton.IsEnabled = true;
+                    mealplannerdatabase.databaseModified = true;
                 }
-                catch (Exception error)
+                else
                 {
-                    System.Windows.MessageBox.Show(Convert.ToString(error));
+                    System.Windows.MessageBox.Show("Invalid Name field, name must contain only letter or numbers or apostophe, and not be blank.", "Invalid name");
                 }
-                NameTextbox.Clear();
-                NameTextbox.IsEnabled = false;
-                RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
-                SaveDatabaseButton.IsEnabled = true;
-                mealplannerdatabase.databaseModified = true;
+
             }
             else
             {
                 System.Windows.MessageBox.Show("Missing a required field or nothing selected", "Missing information");
             }
+
         }
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {

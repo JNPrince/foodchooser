@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Data;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SQLite;
 
 namespace FoodChooser
@@ -57,32 +53,39 @@ namespace FoodChooser
 
             if (isBuildingListEmpty == false && isFoodTypeListEmpty == false)
             {
-
-                SQLiteConnection maindatabase = new SQLiteConnection("DataSource=maindatabase.db; Version=3;");
-                maindatabase.Open();
-
-
-                foreach (string building in buildingTypeSelections)
+                try
                 {
-                    foreach (string foodtype in foodTypeSelections)
+                    SQLiteConnection maindatabase = new SQLiteConnection("DataSource=maindatabase.db; Version=3;");
+                    maindatabase.Open();
+
+
+                    foreach (string building in buildingTypeSelections)
                     {
-                        string sqlCommandString = $"SELECT Name FROM MealSelector WHERE Building = '{building}' AND Food = '{foodtype}'";
-                        SQLiteCommand command = new SQLiteCommand(sqlCommandString, maindatabase);
-                        SQLiteDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
+                        foreach (string foodtype in foodTypeSelections)
                         {
-                            _results.Add(reader["Name"].ToString());
+                            string sqlCommandString = $"SELECT Name FROM MealSelector WHERE Building = '{building}' AND Food = '{foodtype}'";
+                            SQLiteCommand command = new SQLiteCommand(sqlCommandString, maindatabase);
+                            SQLiteDataReader reader = command.ExecuteReader();
+                            while (reader.Read())
+                            {
+                                _results.Add(reader["Name"].ToString());
+                            }
                         }
                     }
+
+                    isResultsListEmpty = !_results.Any();
+
+                    if (isResultsListEmpty == true)
+                    {
+                        _results.Add("No results, try another selection");
+                    }
                 }
-
-                isResultsListEmpty = !_results.Any();
-
-                if (isResultsListEmpty == true)
+                catch (Exception error)
                 {
-                    _results.Add("No results, try another selection");
+                    System.Windows.MessageBox.Show(Convert.ToString(error));
                 }
             }
+
             else
             {
                 _results.Add("You are missing a selection.");
