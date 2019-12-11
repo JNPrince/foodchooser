@@ -17,6 +17,24 @@ namespace FoodChooser
         DatabaseTools mealselectordatabase = new DatabaseTools() { whichDatabase = "MealSelector" };
         bool createdNewRow;
 
+        public void deSelect()
+        {
+            MealSelectorDatabaseGrid.SelectedItem = null;
+            MealSelectorDatabaseGrid.IsEnabled = true;
+            NameTextbox.IsEnabled = false;
+            FoodTypeTextbox.IsEnabled = false;
+            BuildingTypeTextbox.IsEnabled = false;
+            NameTextbox.Clear();
+            BuildingTypeTextbox.SelectedIndex = -1;
+            FoodTypeTextbox.SelectedIndex = -1;
+            RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
+            RequiredFieldIcon_BuildingType.Visibility = Visibility.Hidden;
+            RequiredFieldIcon_FoodType.Visibility = Visibility.Hidden;
+            SaveDatabaseButton.IsEnabled = true;
+            AddNewButton.IsEnabled = true;
+            DeleteRowButton.IsEnabled = true;
+        }
+
 
         public MealSelectorDatabaseViewer()
         {
@@ -32,21 +50,23 @@ namespace FoodChooser
             NameTextbox.IsEnabled = true;
             FoodTypeTextbox.IsEnabled = true;
             BuildingTypeTextbox.IsEnabled = true;
-            createdNewRow = false;
         }
 
         private void Reload_Button_Click(object sender, RoutedEventArgs e)
         {
+            MealSelectorDatabaseGrid.IsEnabled = true;
             mealselectordatabase.loadDatabase(mealselectordatabase.whichDatabase);
             createdNewRow = false;
             MealSelectorDatabaseGrid.SelectedItem = null;
             mealselectordatabase.dataRemoved = false;
             mealselectordatabase.removedRows.Clear();
-            SaveDatabaseButton.IsEnabled = true;
+            deSelect();
         }
 
         private void Add_New_Button_Click(object sender, RoutedEventArgs e)
         {
+            deSelect();
+            MealSelectorDatabaseGrid.IsEnabled = false;
             createdNewRow = true;
             NameTextbox.IsEnabled = true;
             FoodTypeTextbox.IsEnabled = true;
@@ -56,7 +76,7 @@ namespace FoodChooser
             RequiredFieldIcon_BuildingType.Visibility = Visibility.Visible;
             RequiredFieldIcon_FoodType.Visibility = Visibility.Visible;
             SaveDatabaseButton.IsEnabled = false;
-
+            DeleteRowButton.IsEnabled = false;
         }
         private void Save_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -75,12 +95,7 @@ namespace FoodChooser
                             newRow["Food"] = FoodTypeTextbox.Text;
                             mealselectordatabase.databaseItems.Rows.Add(newRow);
                             ResultTextBlock.Text = "New item added";
-                            MealSelectorDatabaseGrid.SelectedItem = null;
-                            NameTextbox.IsEnabled = false;
-                            FoodTypeTextbox.IsEnabled = false;
-                            BuildingTypeTextbox.IsEnabled = false;
                             createdNewRow = false;
-                            AddNewButton.IsEnabled = true;
                         }
                         else
                         {
@@ -89,27 +104,15 @@ namespace FoodChooser
                             mealselectordatabase.databaseItems.Rows[userSelectedRow]["Building"] = BuildingTypeTextbox.Text;
                             mealselectordatabase.databaseItems.Rows[userSelectedRow]["Food"] = FoodTypeTextbox.Text;
                             ResultTextBlock.Text = "Item updated";
-                            MealSelectorDatabaseGrid.SelectedItem = null;
-                            NameTextbox.IsEnabled = false;
-                            FoodTypeTextbox.IsEnabled = false;
-                            BuildingTypeTextbox.IsEnabled = false;
-                            AddNewButton.IsEnabled = true;
                         }
+                        deSelect();
+
                     }
                     catch (Exception error)
                     {
                         System.Windows.MessageBox.Show(Convert.ToString(error));
                     }
-                    NameTextbox.Clear();
-                    BuildingTypeTextbox.Text = "";
-                    FoodTypeTextbox.Text = "";
-                    NameTextbox.IsEnabled = false;
-                    BuildingTypeTextbox.IsEnabled = false;
-                    FoodTypeTextbox.IsEnabled = false;
-                    RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
-                    RequiredFieldIcon_BuildingType.Visibility = Visibility.Hidden;
-                    RequiredFieldIcon_FoodType.Visibility = Visibility.Hidden;
-                    SaveDatabaseButton.IsEnabled = true;
+                    
                     mealselectordatabase.databaseModified = true;
                 }
                 else
@@ -123,21 +126,11 @@ namespace FoodChooser
             {
                 System.Windows.MessageBox.Show("Missing a required field or nothing selected", "Missing information");
             }
+            
         }
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
-            MealSelectorDatabaseGrid.SelectedItem = null;
-            createdNewRow = false;
-            NameTextbox.IsEnabled = false;
-            FoodTypeTextbox.IsEnabled = false;
-            BuildingTypeTextbox.IsEnabled = false;
-            NameTextbox.Clear();
-            BuildingTypeTextbox.Text = "";
-            FoodTypeTextbox.Text = "";
-            RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
-            RequiredFieldIcon_BuildingType.Visibility = Visibility.Hidden;
-            RequiredFieldIcon_FoodType.Visibility = Visibility.Hidden;
-            SaveDatabaseButton.IsEnabled = true;
+            deSelect();
         }
 
         private void Save_Database_Button_Click(object sender, RoutedEventArgs e)
@@ -149,6 +142,7 @@ namespace FoodChooser
                 mealselectordatabase.successfulSave = null;
                 MealSelectorDatabaseGrid.SelectedItem = null;
             }
+            deSelect();
         }
 
         private void Exit_NoSave_Button_Click(object sender, RoutedEventArgs e)
@@ -173,13 +167,7 @@ namespace FoodChooser
                 DataRow deletedRow = mealselectordatabase.databaseItems.Rows[index];
                 mealselectordatabase.removedRows.Add("'" + Convert.ToString(deletedRow[0]) + "'");
                 mealselectordatabase.databaseItems.Rows.Remove(deletedRow);
-                MealSelectorDatabaseGrid.SelectedItem = null;
-                NameTextbox.Clear();
-                BuildingTypeTextbox.Text = "";
-                FoodTypeTextbox.Text = "";
-                NameTextbox.IsEnabled = false;
-                BuildingTypeTextbox.IsEnabled = false;
-                FoodTypeTextbox.IsEnabled = false;
+                deSelect();
             }
             catch (System.IndexOutOfRangeException)
             {

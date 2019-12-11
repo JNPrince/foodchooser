@@ -15,6 +15,17 @@ namespace FoodChooser
         DatabaseTools mealplannerdatabase = new DatabaseTools() { whichDatabase = "HomeCookedMeals" };
         bool createdNewRow;
 
+        public void deSelect()
+        {
+            MealPlannerDatabaseGrid.SelectedItem = null;
+            NameTextbox.IsEnabled = false;
+            NameTextbox.Clear();
+            RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
+            SaveDatabaseButton.IsEnabled = true;
+            AddNewButton.IsEnabled = true;
+            DeleteRowButton.IsEnabled = true;
+            MealPlannerDatabaseGrid.IsEnabled = true;
+        }
 
         public MealPlannerDatabaseViewer()
         {
@@ -34,14 +45,15 @@ namespace FoodChooser
         {
             mealplannerdatabase.loadDatabase(mealplannerdatabase.whichDatabase);
             createdNewRow = false;
-            MealPlannerDatabaseGrid.SelectedItem = null;
             mealplannerdatabase.dataRemoved = false;
             mealplannerdatabase.removedRows.Clear();
             SaveDatabaseButton.IsEnabled = true;
+            deSelect();
         }
 
         private void Add_New_Button_Click(object sender, RoutedEventArgs e)
         {
+            MealPlannerDatabaseGrid.IsEnabled = false;
             NameTextbox.Clear();
             createdNewRow = true;
             NameTextbox.IsEnabled = true;
@@ -79,15 +91,13 @@ namespace FoodChooser
                             NameTextbox.IsEnabled = false;
                             AddNewButton.IsEnabled = true;
                         }
+                        deSelect();
                     }
                     catch (Exception error)
                     {
                         System.Windows.MessageBox.Show(Convert.ToString(error));
                     }
-                    NameTextbox.Clear();
-                    NameTextbox.IsEnabled = false;
-                    RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
-                    SaveDatabaseButton.IsEnabled = true;
+                    deSelect();
                     mealplannerdatabase.databaseModified = true;
                 }
                 else
@@ -100,16 +110,11 @@ namespace FoodChooser
             {
                 System.Windows.MessageBox.Show("Missing a required field or nothing selected", "Missing information");
             }
-
         }
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
-            MealPlannerDatabaseGrid.SelectedItem = null;
-            createdNewRow = false;
-            NameTextbox.Clear();
-            NameTextbox.IsEnabled = false;          
-            RequiredFieldIcon_Name.Visibility = Visibility.Hidden;
-            SaveDatabaseButton.IsEnabled = true;
+            deSelect();
+            MealPlannerDatabaseGrid.IsEnabled = true;
         }
 
         private void Save_Database_Button_Click(object sender, RoutedEventArgs e)
@@ -119,9 +124,8 @@ namespace FoodChooser
             {
                 ResultTextBlock.Text = "Database write success";
                 mealplannerdatabase.successfulSave = null;
-                MealPlannerDatabaseGrid.SelectedItem = null;
-
             }
+            deSelect();
         }
 
         private void Exit_NoSave_Button_Click(object sender, RoutedEventArgs e)
@@ -147,14 +151,12 @@ namespace FoodChooser
                 DataRow deletedRow = mealplannerdatabase.databaseItems.Rows[index];
                 mealplannerdatabase.removedRows.Add("'" + Convert.ToString(deletedRow[0]) + "'");
                 mealplannerdatabase.databaseItems.Rows.Remove(deletedRow);
-                MealPlannerDatabaseGrid.SelectedItem = null;
-                NameTextbox.Clear();
-                NameTextbox.IsEnabled = false;
             }
             catch (System.IndexOutOfRangeException)
             {
                 System.Windows.MessageBox.Show("You need to select a row to delete", "Error");
             }
+            deSelect();
         }
 
 
